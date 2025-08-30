@@ -1,0 +1,14 @@
+{
+  "name": "css-challenges",
+  "version": "1.0.0",
+  "description": "A training ground for my CSS skills",
+  "author": "bouc1620",
+  "license": "MIT",
+  "packageManager": "pnpm@10.15.0",
+  "private": true,
+  "devDependencies": {
+    "concurrently": "^9.2.1",
+    "live-server": "^1.2.2",
+    "sass": "^1.80.0"
+  }
+}
