@@ -1,0 +1,81 @@
+body {
+  background-color: #e2e2e2;
+}
+
+.button {
+  --darkgray: #343434;
+  --lightgray: #424242;
+
+  --button-border-radius: 2rem;
+  --button-padding: 2rem;
+  --rainbow-border-radius: calc(
+    var(--button-padding) + var(--button-border-radius)
+  );
+
+  display: grid;
+  grid-template-areas: 'stacked';
+
+  padding: var(--button-padding);
+
+  // glass
+  background-color: rgba(255, 255, 255, 0.5);
+  border-radius: var(--rainbow-border-radius);
+  border: none;
+
+  // rainbow
+  &:before {
+    content: '';
+    grid-area: stacked;
+    background: conic-gradient(
+      from 0deg,
+      red,
+      yellow,
+      green,
+      aqua,
+      blue,
+      magenta,
+      red
+    );
+    filter: blur(1rem);
+    border-radius: var(--rainbow-border-radius);
+    border: none;
+    width: calc(100% + 2 * var(--button-padding));
+    height: calc(100% + 2 * var(--button-padding));
+    transform: translate(
+      calc(-1 * var(--button-padding)),
+      calc(-1 * var(--button-padding))
+    );
+    z-index: -1;
+  }
+
+  // button
+  &:after {
+    content: '';
+    grid-area: stacked;
+
+    background: linear-gradient(to bottom, var(--lightgray), var(--darkgray));
+
+		padding: 15px 20px;
+    border-radius: 1rem;
+  }
+
+  // bevel
+  .text {
+    grid-area: stacked;
+    // padding: 0.8571rem 2.1428rem;
+    padding: 12px 30px;
+
+    color: white;
+    font-family: 'Pixelify Sans', sans-serif;
+    font-optical-sizing: auto;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 3rem;
+		margin: 1rem;
+
+    background: linear-gradient(to bottom, var(--darkgray), var(--lightgray));
+    border-radius: 3.5714rem;
+
+    z-index: 1;
+  }
+}

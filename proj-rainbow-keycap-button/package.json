@@ -1,0 +1,14 @@
+{
+  "name": "rainbow-keycap-button",
+  "version": "1.0.0",
+  "main": "index.html",
+  "author": "bouc1620",
+  "license": "MIT",
+  "packageManager": "pnpm@10.15.0",
+  "private": true,
+  "scripts": {
+    "sass": "sass --watch style.scss style.css",
+    "serve": "live-server",
+    "dev": "concurrently \"pnpm run sass\" \"pnpm run serve\""
+  }
+}
