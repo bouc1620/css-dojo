@@ -1,0 +1,17 @@
+{
+  "name": "project-blob-button",
+  "version": "1.0.0",
+  "description": "",
+  "keywords": [
+    "@property rule",
+    "CSS animations",
+    "SVG filter effects"
+  ],
+  "author": "bouc1620",
+  "license": "MIT",
+  "packageManager": "pnpm@10.15.0",
+  "private": true,
+  "scripts": {
+    "dev": "vite"
+  }
+}

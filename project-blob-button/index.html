@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Blob Button</title>
+  </head>
+  <body>
+    <button type="button">Blob Button</button>
+
+    <!-- Hide the SVG and prevent it from affecting the document flow -->
+    <svg width="0" height="0" style="position: absolute">
+      <!-- Defines an SVG filter area that extends beyond the element's bounds so the blur doesn't get clipped -->
+      <filter id="blob" x="-50%" y="-50%" width="200%" height="200%">
+        <!-- Binarizes the alpha channel, results in sharper edges in the end result -->
+        <feComponentTransfer>
+          <feFuncA type="discrete" tableValues="0 1"></feFuncA>
+        </feComponentTransfer>
+        <!-- Softens and expands the edges, blending shapes together -->
+        <feGaussianBlur stdDeviation="5"></feGaussianBlur>
+        <!-- Another threshold on the alpha channel, this one restores the sharp edges after the blur -->
+        <feComponentTransfer>
+          <feFuncA type="table" tableValues="-5 11"></feFuncA>
+        </feComponentTransfer>
+      </filter>
+    </svg>
+
+    <script type="module" src="index.js"></script>
+  </body>
+</html>

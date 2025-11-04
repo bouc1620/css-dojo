@@ -1,0 +1,121 @@
+:root {
+  // Defines linear interpolation points for transitions or animations
+  --spring-easing: linear(
+    0,
+    0.005,
+    0.02 1%,
+    0.07 2%,
+    0.28 4%,
+    0.68 7%,
+    1.03 11%,
+    1.12 14%,
+    1.15,
+    1.13 18%,
+    1.06 21%,
+    0.98 25%,
+    0.94 30%,
+    0.96 35%,
+    1.02 43%,
+    1.04 50%,
+    1.01 58%,
+    0.995 70%,
+    1 100%
+  );
+}
+
+// Custom property registration (CSS Houdini API set)
+// Registers a property with its type which lets the browser interpolate
+// values for transitions or animations
+@property --hue {
+  syntax: '<angle>';
+  initial-value: 240deg;
+  // CSS animations run per element, each element has its own copy of the computed variable
+  // unless inherited which makes the property cascade down and be available in child and pseudo elements
+  inherits: true;
+}
+
+@property --alpha {
+  syntax: '<percentage>';
+  initial-value: 0%;
+  inherits: true;
+}
+
+@keyframes color-shift {
+  from {
+    --hue: 240deg;
+  }
+  to {
+    --hue: 120deg;
+  }
+}
+
+html {
+  height: 100%;
+}
+
+body {
+  background-color: #171717;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  -webkit-font-smoothing: antialiased;
+  margin: 0;
+}
+
+button {
+  --alpha: 0%;
+  --hue: 170deg;
+  --x: 50;
+  --y: 50;
+  --button: hsl(var(--hue), 60%, 60%);
+  --edge: 20px;
+
+  background: transparent;
+  color: hsla(var(--hue), 80%, 30%, 1);
+  font-size: 2em;
+  position: relative;
+  padding: 2em 3em;
+  scale: 0.85;
+  border: none;
+  cursor: pointer;
+  transition: --alpha 0.5s ease-in-out, scale 2s var(--spring-easing);
+
+  // Animates the custom property --hue, both for button and button::before
+  animation: color-shift 5s ease-in-out infinite alternate;
+
+  &:hover {
+    --alpha: 100%;
+    transition-duration: 0, 1s;
+    box-shadow: none;
+    opacity: 1;
+    scale: 1;
+  }
+
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0em;
+    z-index: -1;
+    border: inherit;
+    // A linear-gradient for a static button fill
+    // With a radial-gradient following the mouse cursor
+    background-image: linear-gradient(0deg, var(--button), var(--button)),
+      radial-gradient(
+        40% 70% at calc(var(--x) * 1%) calc(var(--y) * 1%),
+        hsla(var(--hue), 77%, 77%, var(--alpha)) 0%,
+        transparent 90%
+      );
+    // The background-clip and padding create a halo layer larger than the content box,
+    // making the radial highlight appear outside the inner gradient
+    background-clip: content-box, border-box;
+    padding: 24px;
+    // Stacking multiple filters:
+    // - First the blur soften edges so gradients merge
+    // - Then the SVG filter applies a blob / jelly like effect with
+    //   Alpha component thresholding => Gaussian blur => Another alpha threshold
+    // - Finally the drop-shadow adds visual depth after the blob effect
+    filter: blur(12px) url(#blob)
+      drop-shadow(0 0.25em 0.5em hsla(0deg, 0%, 0%, 0.8));
+  }
+}

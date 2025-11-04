@@ -1,7 +1,12 @@
 {
   "name": "project-rainbow-keycap-button",
   "version": "1.0.0",
-  "main": "index.html",
+  "description": "",
+  "keywords": [
+    "@property rule",
+    "@keyframes rule",
+    "CSS animations"
+  ],
   "author": "bouc1620",
   "license": "MIT",
   "packageManager": "pnpm@10.15.0",
