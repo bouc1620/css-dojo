@@ -64,8 +64,8 @@ body {
 }
 
 button {
+  --hue: 240deg;
   --alpha: 0%;
-  --hue: 170deg;
   --x: 50;
   --y: 50;
   --button: hsl(var(--hue), 60%, 60%);
@@ -85,6 +85,7 @@ button {
   animation: color-shift 5s ease-in-out infinite alternate;
 
   &:hover {
+    // Animate the radial gradient’s opacity to 100% on hover to reveal the gooey blob
     --alpha: 100%;
     transition-duration: 0, 1s;
     box-shadow: none;
