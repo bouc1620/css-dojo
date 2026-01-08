@@ -1,0 +1,18 @@
+{
+  "description": {
+    "fr": "Des mini-projets CSS pour expérimenter et progresser dans le langage.",
+    "en": "A training ground for my CSS skills. Small challenges I set myself to try cool tricks and learn."
+  },
+  "keywords": [
+    "SCSS",
+    "pnpm",
+    "CSS Houdini",
+    "@property rule",
+    "svg filters"
+  ],
+  "languages": [
+    "CSS",
+    "SCSS",
+    "JavaScript"
+  ]
+}
