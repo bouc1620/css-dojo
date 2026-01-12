@@ -18,10 +18,5 @@
       "@property rule",
       "SVG filters"
     ]
-  },
-  "languages": [
-    "CSS",
-    "SCSS",
-    "JavaScript"
-  ]
+  }
 }
